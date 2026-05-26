@@ -33,4 +33,3 @@ data$balance <- as.numeric(scale(data$balance))
 data$amount <- as.numeric(scale(data$amount))
 data$log_time <- as.numeric(scale(data$log_time))
 data$balance_amount_ratio <- as.numeric(scale(data$balance_amount_ratio))
-
