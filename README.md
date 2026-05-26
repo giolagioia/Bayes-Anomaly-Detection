@@ -82,10 +82,3 @@ The pipeline saves the main figures in `plots/`:
 The train/test split and Bayesian logistic regression use fixed seeds. The
 Bayesian model is fitted with four chains, 1200 iterations per chain, and 600
 warm-up iterations.
-
-## Notes
-
-The frequentist logistic regression may print the warning
-`fitted probabilities numerically 0 or 1 occurred`. This indicates that some
-observations are close to complete separation under the frequentist model, but
-the pipeline still completes and reports the comparison metrics.

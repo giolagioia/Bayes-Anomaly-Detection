@@ -299,7 +299,11 @@ The Beta-Binomial model provides a simple probabilistic description of the overa
 
 The Bayesian logistic regression model extends the analysis by incorporating transaction-specific covariates. In this case, posterior inference no longer admits a closed-form expression and requires simulation-based methods such as MCMC. Although computationally more expensive, this approach allows the anomaly probability to vary across transactions according to their observed characteristics.
 
-From a predictive perspective, the Bayesian logistic regression outperforms the frequentist logistic regression in ROC-AUC, log loss, and F1-score when both use a fixed threshold of $0.5$. The optimal-threshold Bayesian classifier substantially increases recall, at the cost of lower precision and accuracy.
+From a predictive perspective, the Bayesian logistic regression outperforms the frequentist logistic regression in ROC-AUC, log loss, and F1-score when both use a fixed threshold of $0.5$.
+
+The two Bayesian rows in Table 7 refer to the same fitted model. The only difference is the classification threshold. With the standard threshold $0.5$, the model is conservative: it has high precision ($0.8403$) but low recall ($0.2774$). With the ROC-optimal threshold $0.1179$, more observations are classified as anomalies, increasing recall to $0.7874$ and F1-score to $0.5329$, but reducing precision to $0.4027$.
+
+Thus, the optimal threshold is better when detecting more anomalies is more important than avoiding false positives. AUC and log loss remain unchanged because they evaluate predicted probabilities, not the final binary classification.
 
 \begin{table}[H]
 \centering
