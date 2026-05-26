@@ -2,7 +2,7 @@
 library(isotree)
 X <- data[, c("amount", "log_time", "balance", "is_withdrawal", "balance_amount_ratio", "weekday")]
 
-model <- isolation.forest(X)
+model <- isolation.forest(X, seed = 123, nthreads = 2)
 
 #Score measures how much that node is anomaly compared to all others 
 score <- predict(model, X)
@@ -15,7 +15,7 @@ perc_ofAnomalies <- sum(data$Y) / nrow(data)
 cat("\n--- ISOLATION FOREST LABELS ---\n")
 cat("Total observations:", nrow(data), "\n")
 cat("Detected anomalies:", sum(data$Y), "\n")
-cat("Anomaly rate:", round(perc_ofAnomalies, 6), "\n")
+cat("Anomaly rate:", round(perc_ofAnomalies, 7), "\n")
 cat("95% score threshold:", round(as.numeric(threshold), 6), "\n")
 cat("Score min / median / mean / max:",
     round(min(score, na.rm = TRUE), 6), "/",

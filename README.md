@@ -21,8 +21,7 @@ constructed with Isolation Forest and then modeled with Bayesian methods.
 └── Bayesian_anomaly_detection.Rproj
 ```
 
-The input file `bank.xlsx` is expected in the project root. It is ignored by git
-because it is a local data file.
+The input file `bank.xlsx` is expected in the project root. It can be downloaded from https://www.kaggle.com/datasets/apoorvwatsky/bank-transaction-data before running the analysis.
 
 ## Requirements
 

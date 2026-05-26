@@ -40,7 +40,7 @@ A key challenge in this context is the detection of anomalous or potentially fra
 
 This report addresses the problem of anomaly detection in financial transaction data from a Bayesian perspective.
 
-While my personal thesis project develops a structured modeling framework based on Relational Event Models (REMs) and latent variables for considering anomalies, here we consider a different but complementary viewpoint.
+While my personal Master Thesis project develops a structured modeling framework based on Relational Event Models (REMs) and latent variables for considering anomalies, here we consider a different but complementary viewpoint.
 
 Instead of explicitly modeling the interaction structure between entities and the temporal evolution of events, we directly model the probability that a transaction is anomalous.
 This leads to a different probabilistic formulation that focuses on inference rather than on the full generative dynamics of the system.
@@ -50,7 +50,7 @@ We first consider a conjugate Beta-Binomial model to estimate the global rate of
 
 The first approach provides interpretability and analytical tractability, while the second allows incorporating transaction-level features.
 
-The purpose of this work is to show how Bayesian inference can be used as an alternative, more compact approach to anomaly detection compared to REM-based latent variable models.
+The purpose of this work is to show how Bayesian inference can be used as an alternative, more compact approach to anomaly detection.
 
 In this work, we address anomaly detection using a probabilistic perspective, framing the problem within a Bayesian framework.
 
@@ -60,11 +60,11 @@ Each observation corresponds to a single financial transaction over time, record
 Unlike relational transaction datasets, where interactions occur between a sender and a receiver, this dataset does not contain explicit dyadic structure.
 Instead, it represents a uni-variate sequence of financial events associated with one entity evolving over time, where each transaction affects the account balance.
 
-The raw dataset includes variables such as transaction date, withdrawal amount, deposit amount, cheque number, and account balance.
+The raw dataset contains $116201$ transactions in total, and includes variables such as transaction date, withdrawal amount, deposit amount, cheque number, and account balance.
 In the preprocessing phase, structurally irrelevant variables (e.g. cheque number and textual descriptions) were removed.
 
 Since withdrawal and deposit represent mutually exclusive outcomes of the same transaction, they were merged into a single monetary variable to obtain a consistent representation of financial flow.
-Rows with missing or undefined numerical entries were excluded as part of a structural cleaning step, rather than generic imputation, to ensure coherence of the transaction sequence used in the analysis.
+No observations were removed during preprocessing; only non-informative or redundant variables were excluded in order to preserve the original transactional structure of the dataset.
 
 \begin{table}[H]
 \centering
@@ -86,8 +86,6 @@ Y & Binary anomaly label obtained via Isolation Forest \\
 \caption{Summary of variables used in the analysis}
 \end{table}
 
-After preprocessing, the dataset contains $116201$ transactions.
-
 \section{Anomaly Label Construction}
 Since true fraud labels are not available, for the first part of the project we construct a proxy variable $Y_i$ using an unsupervised anomaly detection model.
 
@@ -100,7 +98,7 @@ Y_i =
 \end{cases}
 \]
 
-This produces a binary indicator used in the Bayesian models. The Isolation Forest procedure identifies $5810$ anomalies, corresponding to an anomaly rate of approximately $5.00\%$. The threshold used to define anomalous observations is $0.472158$.
+This produces a binary indicator used in the Bayesian models. The Isolation Forest procedure identifies $5810$ anomalies, corresponding to an anomaly rate of $4.99996\%$. Anomalies are defined using the 95th percentile of the Isolation Forest score distribution, where observations with a score above the 95\% quantile are classified as anomalous (threshold = 0.476498).
 
 \begin{table}[H]
 \centering
@@ -111,11 +109,11 @@ This produces a binary indicator used in the Bayesian models. The Isolation Fore
 Total observations & 116201 \\
 Detected anomalies & 5810 \\
 Anomaly rate & 0.0500 \\
-95\% score threshold & 0.4722 \\
-Minimum anomaly score & 0.3529 \\
-Median anomaly score & 0.3877 \\
-Mean anomaly score & 0.3966 \\
-Maximum anomaly score & 0.7756 \\
+95\% score threshold & 0.4765 \\
+Minimum anomaly score & 0.3563 \\
+Median anomaly score & 0.3905 \\
+Mean anomaly score & 0.3997 \\
+Maximum anomaly score & 0.7816 \\
 \bottomrule
 \end{tabular}
 \caption{Isolation Forest anomaly label summary}
@@ -141,23 +139,22 @@ where $k = \sum_{i=1}^n Y_i$ is the number of observed anomalies of $n$ observat
 
 \subsection{Interpretation}
 
-The posterior mean is:
-
+The posterior expectation value with $\alpha=\alpha_0+k$ and $\beta=\beta_0+n-k$ is so:
 \[
-\mathbb{E}[p \mid Y] = \frac{\alpha}{\alpha + \beta}.
+\mathbb{E}[\pi \mid Y] = \frac{\alpha}{\alpha + \beta}.
 \]
 
-The Beta-Binomial analysis is performed on a random subsample of $250$ transactions, in which $14$ anomalies are observed. This corresponds to an empirical anomaly rate of $5.6\%$ in the subsample.
+The Beta-Binomial analysis is performed on a random subsample of $250$ transactions, in which $13$ anomalies are observed. This corresponds to an empirical anomaly rate of $5.2\%$ in the subsample.
 
 \begin{table}[H]
 \centering
 \begin{tabular}{lrrrrr}
 \toprule
-\textbf{Prior} & $\alpha$ & $\beta$ & \textbf{Posterior mean} & \textbf{95\% CI low} & \textbf{95\% CI high} \\
+\textbf{Prior} & $\alpha$ & $\beta$ & \textbf{Posterior $\mathbb{E}$} & \textbf{95\% CI low} & \textbf{95\% CI high} \\
 \midrule
-Beta(1,1) & 15 & 237 & 0.0595 & 0.0338 & 0.0918 \\
-Beta(1,19) & 15 & 255 & 0.0556 & 0.0315 & 0.0858 \\
-Beta(5,95) & 19 & 331 & 0.0543 & 0.0331 & 0.0803 \\
+Beta(1,1) & 14 & 238 & 0.0556 & 0.0308 & 0.0869 \\
+Beta(1,19) & 14 & 256 & 0.0519 & 0.0287 & 0.0812 \\
+Beta(5,95) & 18 & 332 & 0.0514 & 0.0309 & 0.0769 \\
 \bottomrule
 \end{tabular}
 \caption{Posterior estimates under different Beta priors}
@@ -168,6 +165,8 @@ Beta(5,95) & 19 & 331 & 0.0543 & 0.0331 & 0.0803 \\
 \includegraphics[width=0.85\textwidth]{../plots/02_beta_posterior_comparison.png}
 \caption{Posterior distributions of the anomaly probability under three different Beta priors.}
 \end{figure}
+
+As the prior becomes more informative, the posterior expectation progressively shifts toward the prior belief of an overall anomaly rate close to \(5\%\). In particular, stronger priors reduce the influence of the sampled observations, leading to posterior estimates that are more concentrated around the prior information and exhibit more concentrated credible intervals.
 
 \section{Sequential Bayesian Learning}
 
@@ -184,7 +183,7 @@ where $k_t$ is the cumulative number of anomalies observed up to time $t$.
 The posterior expectation evolves as:
 
 \[
-\mathbb{E}[p_t] = \frac{\alpha_t}{\alpha_t + \beta_t}.
+\mathbb{E}[\pi_t \mid Y_t] = \frac{\alpha_t}{\alpha_t + \beta_t}.
 \]
 
 This allows us to track how the estimated anomaly probability changes as more transactions are observed.
@@ -201,7 +200,7 @@ Final posterior mean & 0.050007 \\
 Final 90\% credible interval lower bound & 0.048960 \\
 Final 90\% credible interval upper bound & 0.051063 \\
 Minimum posterior mean over time & 0.050007 \\
-Maximum posterior mean over time & 0.984848 \\
+Maximum posterior mean over time & 0.986667 \\
 \bottomrule
 \end{tabular}
 \caption{Sequential Bayesian learning summary}
@@ -249,47 +248,37 @@ p(\beta \mid Y,X),
 
 which approximate the posterior distribution of the model parameters. Each draw corresponds to one plausible configuration of the regression coefficients given the observed data.
 
-More specifically, each sampled vector contains one coefficient for every feature included in the model:
-
-\[
-\beta^{(s)}
-=\left(\beta_0^{(s)},\beta_1^{(s)},...,\beta_n^{(s)}
-\right),
-\]
-
-where each component represents the effect of a specific transaction feature on the anomaly probability.
+More specifically, each sampled vector contains one coefficient for every feature included in the model $\beta^{(s)}=\left(\beta_0^{(s)},\beta_1^{(s)},...,\beta_n^{(s)}\right)$, where each component represents the effect of a specific transaction feature on the anomaly probability.
 
 The sampling procedure constructs a Markov chain whose stationary distribution coincides with the posterior distribution of the parameters. After an initial warm-up phase, the chain progressively explores the high-probability regions of the posterior space. The objective is to obtain samples that are as weakly correlated as possible, so that successive draws behave approximately as independent realizations from the target posterior distribution.
 
 Predictions are therefore obtained by averaging over many sampled parameter configurations rather than relying on a single estimated model. This allows the Bayesian framework to naturally quantify predictive uncertainty.
 
-In particular, for each transaction the model provides:
-
-\begin{itemize}
-    \item a posterior mean probability of fraud;
-    \item a credible interval describing uncertainty around the prediction.
-\end{itemize}
+In particular, for each transaction the model provides a posterior mean probability of fraud and a credible interval describing uncertainty around the prediction.
 
 This represents one of the main conceptual differences with respect to the frequentist logistic regression approach, which produces only point estimates of the probabilities.
 
-The Bayesian logistic regression was fitted on $92960$ training observations and evaluated on $23241$ test observations. The training anomaly rate is $0.050054$, while the test anomaly rate is $0.049783$.
+The Bayesian logistic regression was fitted on $92960$ training observations and evaluated on $23241$ test observations. The training anomaly rate is $0.050022$, while the test anomaly rate is $0.049912$.
+
+Three prior specifications were compared for the regression coefficients and intercept: a standard normal prior $\mathcal{N}(0,1)$, a weakly informative normal prior $\mathcal{N}(0,2)$, and a Cauchy$(0,2.5)$ prior. The Cauchy$(0,2.5)$ prior follows the recommendation of Gelman et al. (2008), which is commonly used as a weakly informative default for Bayesian logistic regression.
 
 \begin{table}[H]
 \centering
-\begin{tabular}{lr}
+\begin{tabular}{lrrr}
 \toprule
-\textbf{Quantity} & \textbf{Value} \\
+\textbf{Prior} & \textbf{Max $\hat{R}$} & \textbf{Min bulk ESS} & \textbf{Min tail ESS} \\
 \midrule
-Post-warmup posterior draws & 2400 \\
-Maximum $\hat{R}$ among fixed effects & 1.002404 \\
-Minimum bulk ESS among fixed effects & 1359.47 \\
-Minimum tail ESS among fixed effects & 1222.73 \\
+Normal(0,1) & 1.003 & 1045.7 & 1251 \\
+Cauchy(0,2.5) & 1.003 & 807.8 & 1150 \\
+Normal(0,2) & 1.005 & 831.1 & 1318 \\
 \bottomrule
 \end{tabular}
 \caption{MCMC diagnostic summary}
 \end{table}
 
 The convergence diagnostics are satisfactory: all fixed-effect $\hat{R}$ values are close to 1, and the effective sample sizes are sufficiently large for the fixed effects.
+
+The regression coefficients can be interpreted on the log-odds scale. For the Cauchy$(0,2.5)$ model, the coefficient of \textit{amount} is positive ($2.05$), meaning that larger standardized transaction amounts increase the posterior probability of being classified as anomalous. In odds terms, a one-standard-deviation increase in amount multiplies the odds by approximately $\exp(2.05) \approx 7.8$, holding the other variables fixed. By contrast, \textit{log\_time} has a negative coefficient ($-1.84$), so later transactions in the sequence are associated with lower anomaly odds, approximately multiplied by $\exp(-1.84) \approx 0.16$. The variable \textit{balance\_amount\_ratio} has a strongly negative coefficient, suggesting that transactions that are large relative to the balance are much more likely to be anomalous.
 
 \section{Comparison of Bayesian Approaches}
 
@@ -299,9 +288,9 @@ The Beta-Binomial model provides a simple probabilistic description of the overa
 
 The Bayesian logistic regression model extends the analysis by incorporating transaction-specific covariates. In this case, posterior inference no longer admits a closed-form expression and requires simulation-based methods such as MCMC. Although computationally more expensive, this approach allows the anomaly probability to vary across transactions according to their observed characteristics.
 
-From a predictive perspective, the Bayesian logistic regression outperforms the frequentist logistic regression in ROC-AUC, log loss, and F1-score when both use a fixed threshold of $0.5$.
+From a predictive perspective, all Bayesian logistic regressions outperform the frequentist logistic regression in ROC-AUC, log loss, and F1-score when using the fixed threshold $0.5$.
 
-The two Bayesian rows in Table 7 refer to the same fitted model. The only difference is the classification threshold. With the standard threshold $0.5$, the model is conservative: it has high precision ($0.8403$) but low recall ($0.2774$). With the ROC-optimal threshold $0.1179$, more observations are classified as anomalies, increasing recall to $0.7874$ and F1-score to $0.5329$, but reducing precision to $0.4027$.
+The final Bayesian row in the performance table uses the Cauchy$(0,2.5)$ model, which gives the best AUC and log loss among the Bayesian priors. The only difference is the classification threshold. With the standard threshold $0.5$, the model has precision $0.7849$ and recall $0.6198$. With the ROC-optimal threshold $0.1047$, more observations are classified as anomalies, increasing recall to $0.9491$, but reducing precision to $0.5432$.
 
 Thus, the optimal threshold is better when detecting more anomalies is more important than avoiding false positives. AUC and log loss remain unchanged because they evaluate predicted probabilities, not the final binary classification.
 
@@ -312,9 +301,11 @@ Thus, the optimal threshold is better when detecting more anomalies is more impo
 \toprule
 \textbf{Model} & \textbf{Threshold} & \textbf{AUC} & \textbf{Accuracy} & \textbf{Log loss} & \textbf{Recall} & \textbf{F1} \\
 \midrule
-Frequentist logistic & 0.5000 & 0.8399 & 0.9552 & 0.1429 & 0.1746 & 0.2794 \\
-Bayesian logistic & 0.5000 & 0.8831 & 0.9614 & 0.1237 & 0.2774 & 0.4172 \\
-Bayesian logistic, optimal & 0.1179 & 0.8831 & 0.9313 & 0.1237 & 0.7874 & 0.5329 \\
+Frequentist & 0.50 & 0.9313 & 0.9670 & 0.0966 & 0.4707 & 0.5877 \\
+Bayes N(0,1) & 0.50 & 0.9767 & 0.9725 & 0.0680 & 0.6103 & 0.6894 \\
+Bayes Cauchy(0,2.5) & 0.50 & 0.9790 & 0.9725 & 0.0674 & 0.6198 & 0.6927 \\
+Bayes N(0,2) & 0.50 & 0.9781 & 0.9725 & 0.0675 & 0.6164 & 0.6915 \\
+Bayes Cauchy optimal & 0.1047 & 0.9790 & 0.9576 & 0.0674 & 0.9491 & 0.6909 \\
 \bottomrule
 \end{tabular}
 \caption{Predictive performance on the test set}
@@ -326,9 +317,11 @@ Bayesian logistic, optimal & 0.1179 & 0.8831 & 0.9313 & 0.1237 & 0.7874 & 0.5329
 \toprule
 \textbf{Model} & \textbf{TP} & \textbf{TN} & \textbf{FP} & \textbf{FN} \\
 \midrule
-Frequentist logistic & 202 & 21997 & 87 & 955 \\
-Bayesian logistic & 321 & 22023 & 61 & 836 \\
-Bayesian logistic, optimal threshold & 911 & 20733 & 1351 & 246 \\
+Frequentist & 546 & 21929 & 152 & 614 \\
+Bayes N(0,1) & 708 & 21895 & 186 & 452 \\
+Bayes Cauchy(0,2.5) & 719 & 21884 & 197 & 441 \\
+Bayes N(0,2) & 715 & 21888 & 193 & 445 \\
+Bayes Cauchy optimal & 1101 & 21155 & 926 & 59 \\
 \bottomrule
 \end{tabular}
 \caption{Confusion matrix components on the test set}
@@ -337,10 +330,10 @@ Bayesian logistic, optimal threshold & 911 & 20733 & 1351 & 246 \\
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{../plots/04_roc_comparison.png}
-\caption{ROC curve comparison between frequentist and Bayesian logistic regression.}
+\caption{ROC curve comparison between frequentist logistic regression and the Bayesian logistic regression with Cauchy$(0,2.5)$ prior.}
 \end{figure}
 
-The posterior predictive probabilities have mean $0.050844$ and median $0.009279$. Their 5\% and 95\% quantiles are $0.000864$ and $0.228405$, respectively. The average width of the 90\% credible interval is $0.006430$, with median width $0.001762$.
+For the Bayesian model with Cauchy$(0,2.5)$ prior, the posterior predictive probabilities have mean $0.050558$ and median $0.000387$. Their 5\% and 95\% quantiles are $0.000006$ and $0.349947$, respectively. The average width of the 90\% credible interval is $0.005020$, with median width $0.000133$.
 
 \begin{figure}[H]
 \centering
@@ -349,5 +342,9 @@ The posterior predictive probabilities have mean $0.050844$ and median $0.009279
 \end{figure}
 
 The Bayesian framework therefore provides not only point predictions and classification performance, but also a direct quantification of uncertainty. This additional uncertainty quantification is particularly relevant in fraud detection applications, where identifying uncertain or borderline cases may be as important as maximizing classification accuracy itself.
+
+\section*{References}
+
+Gelman, A., Jakulin, A., Pittau, M. G., and Su, Y.-S. (2008). A weakly informative default prior distribution for logistic and other regression models. \textit{The Annals of Applied Statistics}, 2(4), 1360--1383.
 
 \end{document}

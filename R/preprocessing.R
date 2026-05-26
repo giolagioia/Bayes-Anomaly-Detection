@@ -16,12 +16,16 @@ data$log_time <- log1p(data$time_index)
 
 #Add new features
 data$amount <- ifelse(
-!is.na(data$'WITHDRAWAL AMT') & data$'WITHDRAWAL AMT' > 0,
--data$'WITHDRAWAL AMT',
-data$'DEPOSIT AMT'
+  !is.na(data$'WITHDRAWAL AMT') & data$'WITHDRAWAL AMT' > 0,
+  data$'WITHDRAWAL AMT',
+  data$'DEPOSIT AMT'
 )
 
-data$is_withdrawal <- ifelse(data$amount < 0, 1, 0)
+data$is_withdrawal <- ifelse(
+  !is.na(data$'WITHDRAWAL AMT') & data$'WITHDRAWAL AMT' > 0,
+  1,
+  0
+)
 
 data$weekday <- weekdays(data$DATE)
 data$weekday <- as.factor(data$weekday)

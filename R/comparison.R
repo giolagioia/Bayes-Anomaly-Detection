@@ -6,16 +6,33 @@ p_freq <- predict(fit_freq, newdata = test, type = "response")
 roc_freq <- roc(test$Y, p_freq)
 auc_freq <- auc(roc_freq)
 
-# BAYESIAN MODEL
-p_draws <- posterior_epred(fit_bayes, newdata = test)
-p_bayes <- colMeans(p_draws)
+# BAYESIAN MODELS
+bayes_predictions <- lapply(fit_bayes_models, function(fit) {
+  draws <- posterior_epred(fit, newdata = test)
+  list(
+    draws = draws,
+    probabilities = colMeans(draws)
+  )
+})
 
-roc_bayes <- roc(test$Y, p_bayes)
-auc_bayes <- auc(roc_bayes)
+selected_bayes_prior <- "cauchy_0_2_5"
+
+p_draws <- bayes_predictions[[selected_bayes_prior]]$draws
+p_bayes <- bayes_predictions[[selected_bayes_prior]]$probabilities
+
+roc_bayes_list <- lapply(bayes_predictions, function(pred) {
+  roc(test$Y, pred$probabilities)
+})
+auc_bayes_list <- lapply(roc_bayes_list, auc)
+
+roc_bayes <- roc_bayes_list[[selected_bayes_prior]]
+auc_bayes <- auc_bayes_list[[selected_bayes_prior]]
 
 # ACCURACY
 acc_freq <- mean((p_freq > 0.5) == test$Y)
-acc_bayes <- mean((p_bayes > 0.5) == test$Y)
+acc_bayes_list <- lapply(bayes_predictions, function(pred) {
+  mean((pred$probabilities > 0.5) == test$Y)
+})
 
 # LOG LOSS
 logloss <- function(y, p) {
@@ -23,7 +40,10 @@ logloss <- function(y, p) {
 }
 
 logloss_freq <- logloss(test$Y, p_freq)
-logloss_bayes <- logloss(test$Y, p_bayes)
+logloss_bayes_list <- lapply(bayes_predictions, function(pred) {
+  logloss(test$Y, pred$probabilities)
+})
+logloss_bayes <- logloss_bayes_list[[selected_bayes_prior]]
 
 # Optimal threshold from ROC curve
 opt_threshold <- coords(roc_bayes, "best", best.method = "youden")$threshold
@@ -41,19 +61,38 @@ metric_set <- function(y, pred) {
 }
 
 pred_freq_05 <- as.integer(p_freq > 0.5)
-pred_bayes_05 <- as.integer(p_bayes > 0.5)
 pred_bayes_opt <- as.integer(p_bayes > opt_threshold)
 
-performance_metrics <- data.frame(
-  model = c("Frequentist logistic", "Bayesian logistic", "Bayesian logistic optimal threshold"),
-  threshold = c(0.5, 0.5, as.numeric(opt_threshold)),
-  auc = c(as.numeric(auc_freq), as.numeric(auc_bayes), as.numeric(auc_bayes)),
-  accuracy = c(acc_freq, acc_bayes, mean(pred_bayes_opt == test$Y)),
-  logloss = c(logloss_freq, logloss_bayes, logloss_bayes),
-  rbind(
-    metric_set(test$Y, pred_freq_05),
-    metric_set(test$Y, pred_bayes_05),
-    metric_set(test$Y, pred_bayes_opt)
+bayes_metric_rows <- do.call(rbind, lapply(names(bayes_predictions), function(prior_name) {
+  probabilities <- bayes_predictions[[prior_name]]$probabilities
+  data.frame(
+    model = paste("Bayesian logistic", bayes_prior_labels[[prior_name]]),
+    threshold = 0.5,
+    auc = as.numeric(auc_bayes_list[[prior_name]]),
+    accuracy = acc_bayes_list[[prior_name]],
+    logloss = logloss_bayes_list[[prior_name]],
+    t(metric_set(test$Y, as.integer(probabilities > 0.5)))
+  )
+}))
+
+performance_metrics <- rbind(
+  data.frame(
+    model = "Frequentist logistic",
+    threshold = 0.5,
+    auc = as.numeric(auc_freq),
+    accuracy = acc_freq,
+    logloss = logloss_freq,
+    t(metric_set(test$Y, pred_freq_05))
+  ),
+  bayes_metric_rows,
+  data.frame(
+    model = paste("Bayesian logistic", bayes_prior_labels[[selected_bayes_prior]],
+                  "optimal threshold"),
+    threshold = as.numeric(opt_threshold),
+    auc = as.numeric(auc_bayes),
+    accuracy = mean(pred_bayes_opt == test$Y),
+    logloss = logloss_bayes,
+    t(metric_set(test$Y, pred_bayes_opt))
   )
 )
 
@@ -64,10 +103,10 @@ print(performance_metrics, row.names = FALSE, digits = 4)
 png(file.path("plots", "04_roc_comparison.png"),
     width = 1200, height = 800, res = 150)
 plot(roc_freq, col = "red", main = "ROC Comparison")
-lines(roc_bayes, col = "blue")
+lines(roc_bayes, col = "darkgreen")
 legend("bottomright",
-       legend = c("Frequentist", "Bayesian"),
-       col = c("red", "blue"),
+       legend = c("Frequentist", "Bayesian Cauchy(0,2.5)"),
+       col = c("red", "darkgreen"),
        lwd = 2)
 dev.off()
 
@@ -108,7 +147,7 @@ uncertainty_plot <- ggplot(df, aes(x = x)) +
              color = "red",
              linewidth = 1) +
   labs(
-    title = "Bayesian predictive probabilities with 95% credible intervals",
+    title = "Bayesian predictive probabilities with 90% credible intervals",
     x = "Sample index",
     y = "P(anomaly)"
   ) +

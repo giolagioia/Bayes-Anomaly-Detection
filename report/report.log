@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.23)  26 MAY 2026 14:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.23)  26 MAY 2026 22:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -821,11 +821,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 71.
+(Font)              <12> on input line 63.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 71.
+(Font)              <8> on input line 63.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 71.
+(Font)              <6> on input line 63.
 
 
 [2{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/
@@ -835,7 +835,7 @@ texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/20
 File: ../plots/01_isolation_forest_scores.png Graphic file (type png)
 <use ../plots/01_isolation_forest_scores.png>
 Package pdftex.def Info: ../plots/01_isolation_forest_scores.png  used on input
- line 126.
+ line 124.
 (pdftex.def)             Requested size: 386.96027pt x 257.96997pt.
 
 
@@ -845,7 +845,7 @@ ts/01_isolation_forest_scores.png>]
 File: ../plots/02_beta_posterior_comparison.png Graphic file (type png)
 <use ../plots/02_beta_posterior_comparison.png>
 Package pdftex.def Info: ../plots/02_beta_posterior_comparison.png  used on inp
-ut line 168.
+ut line 165.
 (pdftex.def)             Requested size: 386.96027pt x 257.96997pt.
 
 
@@ -854,12 +854,12 @@ ut line 168.
 File: ../plots/03_sequential_bayesian_learning.png Graphic file (type png)
 <use ../plots/03_sequential_bayesian_learning.png>
 Package pdftex.def Info: ../plots/03_sequential_bayesian_learning.png  used on 
-input line 212.
+input line 211.
 (pdftex.def)             Requested size: 386.96027pt x 257.96997pt.
 
 
-[5 <../plots/03_sequential_bayesian_learning.png>]
-Overfull \hbox (6.81294pt too wide) in paragraph at lines 220--221
+[5]
+Overfull \hbox (6.81294pt too wide) in paragraph at lines 219--220
 []\T1/lmr/m/n/12 Given a bi-nary anomaly in-di-ca-tor $\OML/lmm/m/it/12 Y[] \OM
 S/lmsy/m/n/12 2 f\OT1/lmr/m/n/12 0\OML/lmm/m/it/12 ; \OT1/lmr/m/n/12 1\OMS/lmsy
 /m/n/12 g$ \T1/lmr/m/n/12 for trans-ac-tion $\OML/lmm/m/it/12 i$\T1/lmr/m/n/12 
@@ -869,40 +869,37 @@ S/lmsy/m/n/12 2 f\OT1/lmr/m/n/12 0\OML/lmm/m/it/12 ; \OT1/lmr/m/n/12 1\OMS/lmsy
 
 
 
-[6]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-69.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-Overfull \hbox (2.28593pt too wide) in paragraph at lines 298--299
+[6 <../plots/03_sequential_bayesian_learning.png>]
+
+[7]
+Overfull \hbox (2.28593pt too wide) in paragraph at lines 287--288
 []\T1/lmr/m/n/12 The Beta-Binomial model pro-vides a sim-ple prob-a-bilis-tic d
 e-scrip-tion of the over-all anomaly
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 307.
+(Font)              <10.95> on input line 300.
 
 
-[7{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-<../plots/04_roc_comparison.png, id=100, 1204.5pt x 803.0pt>
+[8]
+<../plots/04_roc_comparison.png, id=107, 1204.5pt x 803.0pt>
 File: ../plots/04_roc_comparison.png Graphic file (type png)
 <use ../plots/04_roc_comparison.png>
-Package pdftex.def Info: ../plots/04_roc_comparison.png  used on input line 335
+Package pdftex.def Info: ../plots/04_roc_comparison.png  used on input line 332
 .
 (pdftex.def)             Requested size: 386.96027pt x 257.96997pt.
-<../plots/05_bayesian_predictive_uncertainty.png, id=101, 1355.0625pt x 903.375
+<../plots/05_bayesian_predictive_uncertainty.png, id=108, 1355.0625pt x 903.375
 pt>
 File: ../plots/05_bayesian_predictive_uncertainty.png Graphic file (type png)
 <use ../plots/05_bayesian_predictive_uncertainty.png>
 Package pdftex.def Info: ../plots/05_bayesian_predictive_uncertainty.png  used 
-on input line 343.
+on input line 340.
 (pdftex.def)             Requested size: 386.96027pt x 257.97458pt.
 
 
-[8 <../plots/04_roc_comparison.png>]
+[9 <../plots/04_roc_comparison.png>]
 
-[9 <../plots/05_bayesian_predictive_uncertainty.png>] (./report.aux)
+[10 <../plots/05_bayesian_predictive_uncertainty.png>] (./report.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -911,13 +908,13 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: C341F17DAB78539AAB087C5DEACE3480;1500.
  ) 
 Here is how much of TeX's memory you used:
- 22192 strings out of 473190
- 414649 string characters out of 5715800
- 797302 words of memory out of 5000000
- 45014 multiletter control sequences out of 15000+600000
- 646798 words of font info for 107 fonts, out of 8000000 for 9000
+ 22159 strings out of 473190
+ 413737 string characters out of 5715800
+ 799304 words of memory out of 5000000
+ 44983 multiletter control sequences out of 15000+600000
+ 650685 words of font info for 107 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,91p,481b,492s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,91p,860b,452s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/lo
 cal/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texliv
 e/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2025/tex
@@ -926,12 +923,13 @@ nts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/p
 ublic/lm/lmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lm
 r12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr17.pfb></u
 sr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/tex
-live/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/
-texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (9 pages, 477587 bytes).
+live/2025/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2025/
+texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/texmf-dist
+/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on report.pdf (10 pages, 522926 bytes).
 PDF statistics:
- 185 PDF objects out of 1000 (max. 8388607)
- 138 compressed objects within 2 object streams
- 31 named destinations out of 1000 (max. 500000)
+ 191 PDF objects out of 1000 (max. 8388607)
+ 142 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
  110 words of extra memory for PDF output out of 10000 (max. 10000000)
 
