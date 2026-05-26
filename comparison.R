@@ -1,106 +1,79 @@
-# =========================
-# MODEL COMPARISON
-# Frequentist vs Bayesian
-# =========================
-
 library(pROC)
+library(ggplot2)
 
-#Frequentist prediction
-p_freq <- predict(
-  fit_freq,
-  newdata = test,
-  type = "response"
-)
+# FREQUENTIST MODEL
+p_freq <- predict(fit_freq, newdata = test, type = "response")
+roc_freq <- roc(test$Y, p_freq)
+auc_freq <- auc(roc_freq)
 
-#Bayesian predictions
-p_draws <- posterior_epred(
-  fit_bayes,
-  newdata = test
-)
-
-# posterior predictive mean
+# BAYESIAN MODEL
+p_draws <- posterior_epred(fit_bayes, newdata = test)
 p_bayes <- colMeans(p_draws)
 
-# credible intervals
-p_ci <- t(apply(
-  p_draws,
-  2,
-  quantile,
-  probs = c(0.025, 0.975)
-))
-
-colnames(p_ci) <- c("low", "high")
-
-# uncertainty width
-uncertainty <- p_ci[,2] - p_ci[,1]
-
-# -------------------------
-# 3. ROC and AUC
-# -------------------------
-roc_freq <- roc(test$Y, p_freq)
 roc_bayes <- roc(test$Y, p_bayes)
-
-auc_freq <- auc(roc_freq)
 auc_bayes <- auc(roc_bayes)
 
-print(auc_freq)
-print(auc_bayes)
+# ACCURACY
+acc_freq <- mean((p_freq > 0.5) == test$Y)
+acc_bayes <- mean((p_bayes > 0.5) == test$Y)
 
-# -------------------------
-# 5. Bayesian uncertainty plot
-# -------------------------
-ord <- order(p_bayes)
+# LOG LOSS
+logloss <- function(y, p) {
+  -mean(y * log(p + 1e-10) + (1 - y) * log(1 - p + 1e-10))
+}
 
-plot(
-  p_bayes[ord],
-  type = "l",
-  col = "red",
-  lwd = 2,
-  ylim = c(0,1),
-  xlab = "Transactions sorted by risk",
-  ylab = "Predicted fraud probability",
-  main = "Bayesian predictive uncertainty"
+logloss_freq <- logloss(test$Y, p_freq)
+logloss_bayes <- logloss(test$Y, p_bayes)
+
+# Optimal threshold from ROC curve
+opt_threshold <- coords(roc_bayes, "best", best.method = "youden")$threshold
+
+# PRINT RESULTS
+auc_freq
+auc_bayes
+acc_freq
+acc_bayes
+logloss_freq
+logloss_bayes
+
+#ROC Curve
+plot(roc_freq, col = "red", main = "ROC Comparison")
+lines(roc_bayes, col = "blue")
+legend("bottomright",
+       legend = c("Frequentist", "Bayesian"),
+       col = c("red", "blue"),
+       lwd = 2)
+
+#Uncertainty of bayesian prob
+p_mean <- apply(p_draws, 2, mean)
+p_low  <- apply(p_draws, 2, quantile, 0.05)
+p_high <- apply(p_draws, 2, quantile, 0.95)
+
+set.seed(123)
+idx <- sample(seq_len(nrow(test)), 500)
+idx <- sort(idx)
+
+df <- data.frame(
+  x = seq_along(idx),
+  mean = p_mean[idx],
+  low = p_low[idx],
+  high = p_high[idx]
 )
 
-lines(
-  p_ci[ord,1],
-  col = "gray",
-  lty = 2
-)
-
-lines(
-  p_ci[ord,2],
-  col = "gray",
-  lty = 2
-)
-
-# -------------------------
-# 6. Compare predictions
-# -------------------------
-plot(
-  p_freq,
-  p_bayes,
-  pch = 16,
-  cex = 0.5,
-  xlab = "Frequentist probabilities",
-  ylab = "Bayesian probabilities",
-  main = "Prediction comparison"
-)
-
-abline(0,1,col="red",lwd=2)
-
-# -------------------------
-# 7. Most uncertain transactions
-# -------------------------
-most_uncertain <- order(
-  uncertainty,
-  decreasing = TRUE
-)[1:10]
-
-test[most_uncertain, ]
-
-# -------------------------
-# 8. Uncertainty summary
-# -------------------------
-summary(uncertainty)
+ggplot(df, aes(x = x)) +
+  geom_ribbon(aes(ymin = low, ymax = high),
+              fill = "blue", alpha = 0.3) +
+  geom_line(aes(y = mean),
+            color = "blue", linewidth = 0.8) +
+  geom_hline(yintercept = opt_threshold,
+             linetype = "dashed",
+             color = "red",
+             linewidth = 1) +
+  labs(
+    title = "Bayesian predictive probabilities with 95% credible intervals",
+    x = "Sample index",
+    y = "P(anomaly)"
+  ) +
+  ylim(0, 1) +
+  theme_minimal()
 

@@ -9,7 +9,7 @@ test  <- data[-train_idx, ]
 
 # no more beta binomial, but brms
 fit_bayes <- brm(
-  Y ~ amount + balance + log_time + is_withdrawal,
+  Y ~ amount + balance + log_time + is_withdrawal + balance_amount_ratio + weekday,
   family = bernoulli(link = "logit"),
   data = train,
   prior = c(
