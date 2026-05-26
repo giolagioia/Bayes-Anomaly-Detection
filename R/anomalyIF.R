@@ -2,7 +2,7 @@
 library(isotree)
 X <- data[, c("amount", "log_time", "balance", "is_withdrawal", "balance_amount_ratio", "weekday")]
 
-model <- isolation.forest(X, seed = 123, nthreads = 2)
+model <- isolation.forest(X, seed = 123, nthreads = 1)
 
 #Score measures how much that node is anomaly compared to all others 
 score <- predict(model, X)

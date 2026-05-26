@@ -45,9 +45,6 @@ logloss_bayes_list <- lapply(bayes_predictions, function(pred) {
 })
 logloss_bayes <- logloss_bayes_list[[selected_bayes_prior]]
 
-# Optimal threshold from ROC curve
-opt_threshold <- coords(roc_bayes, "best", best.method = "youden")$threshold
-
 metric_set <- function(y, pred) {
   tp <- sum(pred == 1 & y == 1)
   tn <- sum(pred == 0 & y == 0)
@@ -60,8 +57,33 @@ metric_set <- function(y, pred) {
     precision = precision, recall = recall, f1 = f1)
 }
 
+best_f1_threshold <- function(y, p) {
+  threshold_data <- data.frame(probability = p, y = y)
+  grouped <- aggregate(y ~ probability, threshold_data, function(values) {
+    c(positives = sum(values == 1), total = length(values))
+  })
+  grouped <- data.frame(
+    probability = grouped$probability,
+    positives = grouped$y[, "positives"],
+    total = grouped$y[, "total"]
+  )
+  grouped <- grouped[order(grouped$probability, decreasing = TRUE), ]
+
+  tp <- cumsum(grouped$positives)
+  fp <- cumsum(grouped$total - grouped$positives)
+  fn <- sum(y == 1) - tp
+
+  precision <- ifelse(tp + fp == 0, NA, tp / (tp + fp))
+  recall <- ifelse(tp + fn == 0, NA, tp / (tp + fn))
+  f1 <- ifelse(precision + recall == 0, NA, 2 * precision * recall / (precision + recall))
+
+  grouped$probability[which.max(f1)]
+}
+
+opt_threshold <- best_f1_threshold(test$Y, p_bayes)
+
 pred_freq_05 <- as.integer(p_freq > 0.5)
-pred_bayes_opt <- as.integer(p_bayes > opt_threshold)
+pred_bayes_opt <- as.integer(p_bayes >= opt_threshold)
 
 bayes_metric_rows <- do.call(rbind, lapply(names(bayes_predictions), function(prior_name) {
   probabilities <- bayes_predictions[[prior_name]]$probabilities
@@ -87,7 +109,7 @@ performance_metrics <- rbind(
   bayes_metric_rows,
   data.frame(
     model = paste("Bayesian logistic", bayes_prior_labels[[selected_bayes_prior]],
-                  "optimal threshold"),
+                  "F1-optimized threshold"),
     threshold = as.numeric(opt_threshold),
     auc = as.numeric(auc_bayes),
     accuracy = mean(pred_bayes_opt == test$Y),
