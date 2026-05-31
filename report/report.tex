@@ -63,8 +63,11 @@ Instead, it represents a uni-variate sequence of financial events associated wit
 The raw dataset includes variables such as transaction date, withdrawal amount, deposit amount, cheque number, and account balance.
 In the preprocessing phase, structurally irrelevant variables (e.g. cheque number and textual descriptions) were removed.
 
-Since withdrawal and deposit represent mutually exclusive outcomes of the same transaction, they were merged into a single monetary variable to obtain a consistent representation of financial flow.
-Rows with missing or undefined numerical entries were excluded as part of a structural cleaning step, rather than generic imputation, to ensure coherence of the transaction sequence used in the analysis.
+Since withdrawals and deposits represent mutually exclusive outcomes of the same transaction, they were merged into a single monetary variable to obtain a consistent representation of financial flow.
+
+No observations were removed during preprocessing; instead, only non-informative or redundant variables were excluded. This ensures that the original transactional structure of the dataset is preserved without introducing selection bias.
+
+Moreover, the \textit{time index} is transformed using a logarithmic scale to reduce skewness in transaction timing and to compress large temporal ranges. This improves numerical stability and allows the model to capture nonlinear temporal effects more effectively.
 
 \begin{table}[H]
 \centering
@@ -86,7 +89,7 @@ Y & Binary anomaly label obtained via Isolation Forest \\
 \caption{Summary of variables used in the analysis}
 \end{table}
 
-After preprocessing, the dataset contains $116201$ transactions.
+The dataset contains in total $116201$ transactions.
 
 \section{Anomaly Label Construction}
 Since true fraud labels are not available, for the first part of the project we construct a proxy variable $Y_i$ using an unsupervised anomaly detection model.
@@ -100,7 +103,7 @@ Y_i =
 \end{cases}
 \]
 
-This produces a binary indicator used in the Bayesian models. The Isolation Forest procedure identifies $5810$ anomalies, corresponding to an anomaly rate of approximately $5.00\%$. The threshold used to define anomalous observations is $0.472158$.
+This produces a binary indicator used in the Bayesian models. The Isolation Forest procedure identifies $5810$ anomalies, corresponding to an anomaly rate of $4.99996\%$. Anomalies are defined using the 95th percentile of the Isolation Forest score distribution, where observations with a score above the 95\% quantile are classified as anomalous (threshold = 0.472158).
 
 \begin{table}[H]
 \centering
