@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.23)  26 MAY 2026 23:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.23)  27 MAY 2026 12:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -855,10 +855,10 @@ File: ../plots/03_sequential_bayesian_learning.png Graphic file (type png)
 <use ../plots/03_sequential_bayesian_learning.png>
 Package pdftex.def Info: ../plots/03_sequential_bayesian_learning.png  used on 
 input line 211.
-(pdftex.def)             Requested size: 386.96027pt x 257.96997pt.
+(pdftex.def)             Requested size: 341.43307pt x 227.61984pt.
 
 
-[5]
+[5 <../plots/03_sequential_bayesian_learning.png>]
 Overfull \hbox (6.81294pt too wide) in paragraph at lines 219--220
 []\T1/lmr/m/n/12 Given a bi-nary anomaly in-di-ca-tor $\OML/lmm/m/it/12 Y[] \OM
 S/lmsy/m/n/12 2 f\OT1/lmr/m/n/12 0\OML/lmm/m/it/12 ; \OT1/lmr/m/n/12 1\OMS/lmsy
@@ -869,26 +869,27 @@ S/lmsy/m/n/12 2 f\OT1/lmr/m/n/12 0\OML/lmm/m/it/12 ; \OT1/lmr/m/n/12 1\OMS/lmsy
 
 
 
-[6 <../plots/03_sequential_bayesian_learning.png>]
-
-[7]
+[6]
 Overfull \hbox (2.28593pt too wide) in paragraph at lines 287--288
 []\T1/lmr/m/n/12 The Beta-Binomial model pro-vides a sim-ple prob-a-bilis-tic d
 e-scrip-tion of the over-all anomaly
  []
 
+
+
+[7]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10.95> on input line 300.
-
-
-[8]
-<../plots/04_roc_comparison.png, id=111, 1204.5pt x 803.0pt>
+<../plots/04_roc_comparison.png, id=104, 903.375pt x 803.0pt>
 File: ../plots/04_roc_comparison.png Graphic file (type png)
 <use ../plots/04_roc_comparison.png>
 Package pdftex.def Info: ../plots/04_roc_comparison.png  used on input line 332
 .
-(pdftex.def)             Requested size: 386.96027pt x 257.96997pt.
-<../plots/05_bayesian_predictive_uncertainty.png, id=112, 1355.0625pt x 903.375
+(pdftex.def)             Requested size: 273.14923pt x 242.80104pt.
+
+
+[8]
+<../plots/05_bayesian_predictive_uncertainty.png, id=113, 1355.0625pt x 903.375
 pt>
 File: ../plots/05_bayesian_predictive_uncertainty.png Graphic file (type png)
 <use ../plots/05_bayesian_predictive_uncertainty.png>
@@ -897,11 +898,10 @@ on input line 340.
 (pdftex.def)             Requested size: 386.96027pt x 257.97458pt.
 
 
-[9 <../plots/04_roc_comparison.png>]
+[9 <../plots/04_roc_comparison.png> <../plots/05_bayesian_predictive_uncertaint
+y.png>]
 
-[10 <../plots/05_bayesian_predictive_uncertainty.png>]
-
-[11] (./report.aux)
+[10] (./report.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -910,13 +910,13 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: AE13AF13A9347A74EEB88C39A65152C6;1594.
  ) 
 Here is how much of TeX's memory you used:
- 22162 strings out of 473190
- 413764 string characters out of 5715800
- 799304 words of memory out of 5000000
+ 22161 strings out of 473190
+ 413757 string characters out of 5715800
+ 797304 words of memory out of 5000000
  44984 multiletter control sequences out of 15000+600000
  650685 words of font info for 107 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,91p,860b,452s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,91p,860b,448s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/lo
 cal/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texliv
 e/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2025/tex
@@ -928,10 +928,10 @@ sr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/tex
 live/2025/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2025/
 texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/texmf-dist
 /fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (11 pages, 526359 bytes).
+Output written on report.pdf (10 pages, 531062 bytes).
 PDF statistics:
- 199 PDF objects out of 1000 (max. 8388607)
- 149 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
+ 195 PDF objects out of 1000 (max. 8388607)
+ 146 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
  118 words of extra memory for PDF output out of 10000 (max. 10000000)
 

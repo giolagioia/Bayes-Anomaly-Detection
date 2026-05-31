@@ -28,7 +28,7 @@
 
 \title{Bayesian Fraud Detection}
 \author{Giovanni La Gioia}
-\date{2nd June 2026}
+\date{27th May 2026}
 
 \begin{document}
 
@@ -197,8 +197,8 @@ At the end of the sequential updating procedure, the posterior mean anomaly prob
 \textbf{Quantity} & \textbf{Value} \\
 \midrule
 Final posterior mean & 0.050007 \\
-Final 90\% credible interval lower bound & 0.048960 \\
-Final 90\% credible interval upper bound & 0.051063 \\
+Final 95\% credible interval lower bound & 0.048960 \\
+Final 95\% credible interval upper bound & 0.051063 \\
 Minimum posterior mean over time & 0.050007 \\
 Maximum posterior mean over time & 0.986667 \\
 \bottomrule
@@ -208,8 +208,8 @@ Maximum posterior mean over time & 0.986667 \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{../plots/03_sequential_bayesian_learning.png}
-\caption{Sequential posterior mean of the anomaly probability with 90\% credible interval.}
+\includegraphics[width=0.75\textwidth]{../plots/03_sequential_bayesian_learning.png}
+\caption{Sequential posterior mean of the anomaly probability with 95\% credible interval.}
 \end{figure}
 
 \section{Bayesian Logistic Regression via MCMC}
@@ -329,16 +329,16 @@ Bayes Cauchy F1-opt. & 1064 & 21333 & 748 & 96 \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{../plots/04_roc_comparison.png}
+\includegraphics[width=0.6\textwidth]{../plots/04_roc_comparison.png}
 \caption{ROC curve comparison between frequentist logistic regression and the Bayesian logistic regression with Cauchy$(0,2.5)$ prior.}
 \end{figure}
 
-For the Bayesian model with Cauchy$(0,2.5)$ prior, the posterior predictive probabilities have mean $0.050558$ and median $0.000387$. Their 5\% and 95\% quantiles are $0.000006$ and $0.349947$, respectively. The average width of the 90\% credible interval is $0.005020$, with median width $0.000133$.
+For the Bayesian model with Cauchy$(0,2.5)$ prior, the posterior predictive probabilities have mean $0.050558$ and median $0.000387$. Their 2.5\% and 97.5\% quantiles are $0.000006$ and $0.349947$, respectively. The average width of the 95\% credible interval is $0.005020$, with median width $0.000133$.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{../plots/05_bayesian_predictive_uncertainty.png}
-\caption{Bayesian posterior predictive probabilities with 90\% credible intervals for a sample of test observations.}
+\caption{Bayesian posterior predictive probabilities with 95\% credible intervals for a sample of test observations.}
 \end{figure}
 
 The Bayesian framework therefore provides not only point predictions and classification performance, but also a direct quantification of uncertainty. This additional uncertainty quantification is particularly relevant in fraud detection applications, where identifying uncertain or borderline cases may be as important as maximizing classification accuracy itself.
@@ -357,4 +357,5 @@ Gelman, A., Jakulin, A., Pittau, M. G., and Su, Y.-S. (2008). A weakly informati
 
 Liu, F. T., Ting, K. M., and Zhou, Z.-H. (2008). Isolation Forest. In \textit{Proceedings of the IEEE International Conference on Data Mining (ICDM)}, 413--422.
 
+Agresti, A., Kateri, M., Grove, R., and Mira, A. (2026). \textit{Foundations of Bayesian Statistics for Data Scientists: With R and Python}. CRC Press, Taylor \& Francis Group.
 \end{document}

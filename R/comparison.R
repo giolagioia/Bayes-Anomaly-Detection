@@ -121,9 +121,9 @@ performance_metrics <- rbind(
 cat("\n--- PREDICTIVE PERFORMANCE ON TEST SET ---\n")
 print(performance_metrics, row.names = FALSE, digits = 4)
 
-#ROC Curve
+# ROC Curve
 png(file.path("plots", "04_roc_comparison.png"),
-    width = 1200, height = 800, res = 150)
+    width = 900, height = 800, res = 150)
 plot(roc_freq, col = "red", main = "ROC Comparison")
 lines(roc_bayes, col = "darkgreen")
 legend("bottomright",
@@ -132,20 +132,20 @@ legend("bottomright",
        lwd = 2)
 dev.off()
 
-#Uncertainty of bayesian prob
+# Uncertainty of bayesian probabilities
 p_mean <- apply(p_draws, 2, mean)
-p_low  <- apply(p_draws, 2, quantile, 0.05)
-p_high <- apply(p_draws, 2, quantile, 0.95)
+p_low  <- apply(p_draws, 2, quantile, 0.025)
+p_high <- apply(p_draws, 2, quantile, 0.975)
 
 cat("\n--- BAYESIAN PREDICTIVE PROBABILITIES ---\n")
 cat("Mean posterior predictive probability:", round(mean(p_bayes), 6), "\n")
 cat("Median posterior predictive probability:", round(median(p_bayes), 6), "\n")
-cat("5% / 95% quantiles:",
-    round(quantile(p_bayes, 0.05), 6), "/",
-    round(quantile(p_bayes, 0.95), 6), "\n")
-cat("Mean 90% credible interval width:",
+cat("2.5% / 97.5% quantiles:",
+    round(quantile(p_bayes, 0.025), 6), "/",
+    round(quantile(p_bayes, 0.975), 6), "\n")
+cat("Mean 95% credible interval width:",
     round(mean(p_high - p_low), 6), "\n")
-cat("Median 90% credible interval width:",
+cat("Median 95% credible interval width:",
     round(median(p_high - p_low), 6), "\n")
 
 set.seed(123)
@@ -169,7 +169,7 @@ uncertainty_plot <- ggplot(df, aes(x = x)) +
              color = "red",
              linewidth = 1) +
   labs(
-    title = "Bayesian predictive probabilities with 90% credible intervals",
+    title = "Bayesian predictive probabilities with 95% credible intervals",
     x = "Sample index",
     y = "P(anomaly)"
   ) +
