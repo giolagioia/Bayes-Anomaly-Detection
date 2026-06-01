@@ -21,20 +21,20 @@ bayes_priors <- list(
     prior(normal(0, 1), class = "b"),
     prior(normal(0, 1), class = "Intercept")
   ),
-  cauchy_0_2_5 = c(
-    prior(cauchy(0, 2.5), class = "b"),
-    prior(cauchy(0, 2.5), class = "Intercept")
-  ),
   normal_0_2 = c(
     prior(normal(0, 2), class = "b"),
     prior(normal(0, 2), class = "Intercept")
+  ),
+  cauchy_0_2_5 = c(
+    prior(cauchy(0, 2.5), class = "b"),
+    prior(cauchy(0, 2.5), class = "Intercept")
   )
 )
 
 bayes_prior_labels <- c(
   normal_0_1 = "Normal(0,1)",
-  cauchy_0_2_5 = "Cauchy(0,2.5)",
-  normal_0_2 = "Normal(0,2)"
+  normal_0_2 = "Normal(0,2)",
+  cauchy_0_2_5 = "Cauchy(0,2.5)"
 )
 
 fit_one_bayes_model <- function(prior_name) {
