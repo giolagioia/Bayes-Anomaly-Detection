@@ -17,6 +17,8 @@ constructed with Isolation Forest and then modeled with Bayesian methods.
 │   ├── mcmc.R
 │   └── comparison.R
 ├── plots/
+├── presentation/
+├── report/
 ├── README.md
 └── Bayesian_anomaly_detection.Rproj
 ```
