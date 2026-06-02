@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.23)  2 JUN 2026 12:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.23)  2 JUN 2026 16:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -658,35 +658,59 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisruleclass=\count356
 \@lastruleclass=\count357
 \@thisrulewidth=\dimen320
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/beamer/beamerfontthemeprofessionalfonts.sty)
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 61.
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count358
+\lst@gtempboxa=\box82
+\lst@token=\toks50
+\lst@length=\count359
+\lst@currlwidth=\dimen321
+\lst@column=\count360
+\lst@pos=\count361
+\lst@lostspace=\dimen322
+\lst@width=\dimen323
+\lst@newlines=\count362
+\lst@lineno=\count363
+\lst@maxwidth=\dimen324
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+\c@lstnumber=\count364
+\lst@skipnumbers=\count365
+\lst@framebox=\box83
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2024/09/23 1.10c listings configuration
+))
+Package: listings 2024/09/23 1.10c (Carsten Heinz)
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/beamer/beamerfontthemeprofessionalfonts.sty)
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 78.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count358
-\l__pdf_internal_box=\box82
+\l__color_backend_stack_int=\count366
+\l__pdf_internal_box=\box84
 ) (./presentation.aux)
 \openout1 = `presentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 78.
+LaTeX Font Info:    ... okay on input line 78.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -724,24 +748,24 @@ LaTeX Font Info:    ... okay on input line 61.
 
 (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count359
-\scratchdimen=\dimen321
-\scratchbox=\box83
-\nofMPsegments=\count360
-\nofMParguments=\count361
-\everyMPshowfont=\toks50
-\MPscratchCnt=\count362
-\MPscratchDim=\dimen322
-\MPnumerator=\count363
-\makeMPintoPDFobject=\count364
-\everyMPtoPDFconversion=\toks51
+\scratchcounter=\count367
+\scratchdimen=\dimen325
+\scratchbox=\box85
+\nofMPsegments=\count368
+\nofMParguments=\count369
+\everyMPshowfont=\toks51
+\MPscratchCnt=\count370
+\MPscratchDim=\dimen326
+\MPnumerator=\count371
+\makeMPintoPDFobject=\count372
+\everyMPtoPDFconversion=\toks52
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 61.
+Package hyperref Info: Link coloring OFF on input line 78.
  (./presentation.out) (./presentation.out)
 \@outlinefile=\write5
 \openout5 = `presentation.out'.
@@ -758,76 +782,78 @@ Dictionary: translator-months-dictionary, Language: English
 Dictionary: translator-numbers-dictionary, Language: English 
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/translator/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
-) (./presentation.nav)
+)
+\c@lstlisting=\count373
+ (./presentation.nav)
 
 [1
 
 {/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 95.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 102.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 95.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 102.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 95.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 102.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 95.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 102.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 95.
+(Font)              <10.95> on input line 102.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 95.
+(Font)              <8> on input line 102.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 95.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 95.
+(Font)              <6> on input line 102.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 102.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 95.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 102.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 95.
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 102.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
 )
-<illustration-isolation-forest.png, id=56, 895.345pt x 482.80376pt>
-File: illustration-isolation-forest.png Graphic file (type png)
-<use illustration-isolation-forest.png>
-Package pdftex.def Info: illustration-isolation-forest.png  used on input line 95.
-(pdftex.def)             Requested size: 179.25114pt x 96.6548pt.
-
 
 [2
 
- <./illustration-isolation-forest.png>]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 141.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 141.
-
-Overfull \vbox (2.38536pt too high) detected at line 141
- []
-
+]
+<illustration-isolation-forest.png, id=64, 895.345pt x 482.80376pt>
+File: illustration-isolation-forest.png Graphic file (type png)
+<use illustration-isolation-forest.png>
+Package pdftex.def Info: illustration-isolation-forest.png  used on input line 124.
+(pdftex.def)             Requested size: 179.25114pt x 96.6548pt.
 
 
 [3
 
-{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
+ <./illustration-isolation-forest.png>]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 170.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 170.
+
+Overfull \vbox (2.38536pt too high) detected at line 170
+ []
+
+
 
 [4
 
-{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
 
 [5
 
-]
+{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
 
 [6
 
@@ -836,111 +862,141 @@ Overfull \vbox (2.38536pt too high) detected at line 141
 [7
 
 ]
-<../plots/01_isolation_forest_scores.png, id=110, 1204.5pt x 803.0pt>
-File: ../plots/01_isolation_forest_scores.png Graphic file (type png)
-<use ../plots/01_isolation_forest_scores.png>
-Package pdftex.def Info: ../plots/01_isolation_forest_scores.png  used on input line 221.
-(pdftex.def)             Requested size: 207.13776pt x 138.08879pt.
-
 
 [8
 
- <../plots/01_isolation_forest_scores.png>]
-Overfull \vbox (1.2701pt too high) detected at line 249
- []
-
+]
+<../plots/01_isolation_forest_scores.png, id=117, 1204.5pt x 803.0pt>
+File: ../plots/01_isolation_forest_scores.png Graphic file (type png)
+<use ../plots/01_isolation_forest_scores.png>
+Package pdftex.def Info: ../plots/01_isolation_forest_scores.png  used on input line 250.
+(pdftex.def)             Requested size: 207.13776pt x 138.08879pt.
 
 
 [9
 
-]
-<../plots/02_beta_posterior_comparison.png, id=129, 1204.5pt x 803.0pt>
-File: ../plots/02_beta_posterior_comparison.png Graphic file (type png)
-<use ../plots/02_beta_posterior_comparison.png>
-Package pdftex.def Info: ../plots/02_beta_posterior_comparison.png  used on input line 265.
-(pdftex.def)             Requested size: 231.03711pt x 154.01741pt.
+ <../plots/01_isolation_forest_scores.png>]
+\openout4 = `presentation.vrb'.
 
+ (./presentation.vrb (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2024/09/23 1.10c listings language file
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2024/09/23 1.10c listings language file
+)
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <8> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 4.
+)
 
 [10
 
- <../plots/02_beta_posterior_comparison.png>]
-
-[11
-
 ]
-<../plots/03_sequential_bayesian_learning.png, id=146, 1204.5pt x 803.0pt>
-File: ../plots/03_sequential_bayesian_learning.png Graphic file (type png)
-<use ../plots/03_sequential_bayesian_learning.png>
-Package pdftex.def Info: ../plots/03_sequential_bayesian_learning.png  used on input line 306.
-(pdftex.def)             Requested size: 246.96797pt x 164.64056pt.
-
-
-[12
-
- <../plots/03_sequential_bayesian_learning.png>]
-
-[13
-
-]
-
-[14
-
-]
-
-[15
-
-]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 383.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 383.
-
-
-[16
-
-]
-Overfull \vbox (1.12393pt too high) detected at line 414
+Overfull \vbox (1.2701pt too high) detected at line 295
  []
 
 
 
+[11
+
+]
+<../plots/02_beta_posterior_comparison.png, id=146, 1204.5pt x 803.0pt>
+File: ../plots/02_beta_posterior_comparison.png Graphic file (type png)
+<use ../plots/02_beta_posterior_comparison.png>
+Package pdftex.def Info: ../plots/02_beta_posterior_comparison.png  used on input line 311.
+(pdftex.def)             Requested size: 231.03711pt x 154.01741pt.
+
+
+[12
+
+ <../plots/02_beta_posterior_comparison.png>]
+
+[13
+
+]
+<../plots/03_sequential_bayesian_learning.png, id=164, 1204.5pt x 803.0pt>
+File: ../plots/03_sequential_bayesian_learning.png Graphic file (type png)
+<use ../plots/03_sequential_bayesian_learning.png>
+Package pdftex.def Info: ../plots/03_sequential_bayesian_learning.png  used on input line 352.
+(pdftex.def)             Requested size: 246.96797pt x 164.64056pt.
+
+
+[14
+
+ <../plots/03_sequential_bayesian_learning.png>]
+
+[15
+
+]
+
+[16
+
+]
+
 [17
 
 ]
-<../plots/04_roc_comparison.png, id=193, 903.375pt x 803.0pt>
-File: ../plots/04_roc_comparison.png Graphic file (type png)
-<use ../plots/04_roc_comparison.png>
-Package pdftex.def Info: ../plots/04_roc_comparison.png  used on input line 419.
-(pdftex.def)             Requested size: 208.79192pt x 185.59306pt.
+\openout4 = `presentation.vrb'.
 
+ (./presentation.vrb)
 
 [18
 
- <../plots/04_roc_comparison.png>]
+]
 
 [19
 
 ]
-<../plots/05_bayesian_predictive_uncertainty.png, id=210, 1355.0625pt x 903.375pt>
-File: ../plots/05_bayesian_predictive_uncertainty.png Graphic file (type png)
-<use ../plots/05_bayesian_predictive_uncertainty.png>
-Package pdftex.def Info: ../plots/05_bayesian_predictive_uncertainty.png  used on input line 453.
-(pdftex.def)             Requested size: 250.95525pt x 167.30095pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 466.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 466.
 
 
 [20
 
- <../plots/05_bayesian_predictive_uncertainty.png>]
+]
+Overfull \vbox (1.12393pt too high) detected at line 497
+ []
+
+
 
 [21
 
 ]
+<../plots/04_roc_comparison.png, id=227, 903.375pt x 803.0pt>
+File: ../plots/04_roc_comparison.png Graphic file (type png)
+<use ../plots/04_roc_comparison.png>
+Package pdftex.def Info: ../plots/04_roc_comparison.png  used on input line 502.
+(pdftex.def)             Requested size: 208.79192pt x 185.59306pt.
+
 
 [22
 
-]
+ <../plots/04_roc_comparison.png>]
+<../plots/05_bayesian_predictive_uncertainty.png, id=236, 1355.0625pt x 903.375pt>
+File: ../plots/05_bayesian_predictive_uncertainty.png Graphic file (type png)
+<use ../plots/05_bayesian_predictive_uncertainty.png>
+Package pdftex.def Info: ../plots/05_bayesian_predictive_uncertainty.png  used on input line 517.
+(pdftex.def)             Requested size: 250.95525pt x 167.30095pt.
+
 
 [23
+
+ <../plots/05_bayesian_predictive_uncertainty.png>]
+
+[24
+
+]
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <12> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 554.
+
+
+[25
 
 ]
 \tf@nav=\write6
@@ -961,18 +1017,18 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 (rerunfilecheck)             Checksum: 72219623CE6936D0B682FCDC4D84521D;942.
  ) 
 Here is how much of TeX's memory you used:
- 25439 strings out of 473190
- 501644 string characters out of 5715800
- 857673 words of memory out of 5000000
- 48089 multiletter control sequences out of 15000+600000
- 649282 words of font info for 120 fonts, out of 8000000 for 9000
+ 27894 strings out of 473190
+ 533043 string characters out of 5715800
+ 1077990 words of memory out of 5000000
+ 50506 multiletter control sequences out of 15000+600000
+ 656140 words of font info for 126 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,14n,123p,443b,832s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmss12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmss8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmss9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on presentation.pdf (23 pages, 697071 bytes).
+ 128i,14n,123p,443b,2220s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmss12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmss8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmss9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsso12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on presentation.pdf (25 pages, 801835 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 232 compressed objects within 3 object streams
- 55 named destinations out of 1000 (max. 500000)
+ 374 PDF objects out of 1000 (max. 8388607)
+ 257 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
  137 words of extra memory for PDF output out of 10000 (max. 10000000)
 

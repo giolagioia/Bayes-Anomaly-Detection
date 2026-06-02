@@ -7,6 +7,7 @@
 \usepackage{amsmath, amssymb, bm}
 \usepackage{booktabs}
 \usepackage{graphicx}
+\usepackage{listings}
 \usefonttheme{professionalfonts}
 
 \definecolor{main}{RGB}{25,25,25}
@@ -51,6 +52,22 @@
   \color{accent}\rule{\linewidth}{0.6pt}
 }
 
+\lstdefinestyle{rcode}{
+  language=R,
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{accent}\bfseries,
+  commentstyle=\color{gray},
+  stringstyle=\color{accent2},
+  showstringspaces=false,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  rulecolor=\color{accent},
+  framerule=0.4pt,
+  xleftmargin=0.2cm,
+  xrightmargin=0.2cm
+}
+
 \title[Bayesian Fraud Detection]{Bayesian Fraud Detection}
 \subtitle{From Prior Knowledge to Posterior Uncertainty}
 \author{Giovanni La Gioia}
@@ -71,6 +88,18 @@
 \end{frame}
 
 \section{Introduction}
+
+\begin{frame}{Context}
+
+\begin{itemize}
+  \item Modern financial systems generate high-volume transactional data with complex temporal patterns.
+  \item Anomaly detection aims to identify rare or unusual transactions that deviate from normal behaviour.
+  \item In real-world settings, true fraud labels are often unavailable or incomplete.
+  \item This motivates the use of unsupervised methods and probabilistic models to estimate anomaly risk.
+  \item Transaction-level anomaly detection is inherently a \textbf{rare event classification problem}, where class imbalance and uncertainty are central challenges.
+\end{itemize}
+
+\end{frame}
 
 \begin{frame}{Objective}
 
@@ -220,6 +249,23 @@
   \end{columns}
 \end{frame}
 
+\begin{frame}[fragile]{Code: Proxy Anomaly Label}
+\begin{block}{Isolation Forest thresholding}
+\begin{lstlisting}[style=rcode]
+X <- data[, c("amount", "log_time", "balance",
+              "is_withdrawal", "balance_amount_ratio",
+              "weekday")]
+
+model <- isolation.forest(X, seed = 123, nthreads = 1)
+score <- predict(model, X)
+
+threshold <- quantile(score, 0.95, na.rm = TRUE)
+data$Y <- ifelse(score > threshold, 1, 0)
+\end{lstlisting}
+\end{block}
+
+\end{frame}
+
 \section{Analytical Posterior}
 
 \begin{frame}{Beta-Binomial Model}
@@ -359,9 +405,46 @@
   \end{itemize}
 \end{frame}
 
-\section{Results}
+\begin{frame}[fragile]{Code: Bayesian Logistic Regression}
+\begin{block}{MCMC fit with \texttt{brms} with Cauchy prior}
+\begin{lstlisting}[style=rcode]
+bayes_formula <- Y ~ amount + balance + log_time +
+  is_withdrawal + balance_amount_ratio + weekday
 
-\begin{frame}{MCMC Diagnostics}
+fit_bayes <- brm(
+  bayes_formula,
+  family = bernoulli(link = "logit"),
+  data = train,
+  prior = c(prior(cauchy(0, 2.5), class = "b"),
+            prior(cauchy(0, 2.5), class = "Intercept")),
+  chains = 4, iter = 1200, warmup = 600,
+  seed = 123
+)
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\section{Results}
+\begin{frame}{Bayesian Logistic Regression Results with Cauchy Prior}
+
+\begin{block}{Model specification}
+\begin{itemize}
+  \item Prior: $\text{Cauchy}(0,2.5)$ (weakly informative)
+  \item 92,960 training observations, 2,400 posterior draws
+\end{itemize}
+\end{block}
+
+\begin{block}{Key feature effects (log-odds scale)}
+\begin{itemize}
+  \item \textbf{balance amount ratio (-22.26):} strongest effect; high imbalance strongly indicates anomalies.
+  \item \textbf{log time (-1.84):} later transactions are less likely to be anomalous.
+  \item \textbf{Sunday (+5.57):} extremely high anomaly concentration on Sundays.
+  \item \textbf{is\_withdrawal (+0.34):} withdrawals slightly more suspicious than deposits.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{MCMC Diagnostics and Convergence}
   \begin{table}
     \centering
     \small
@@ -377,7 +460,7 @@
   \end{table}
 
   \begin{itemize}
-    \item $\hat{R}$ close to 1 indicates convergence.
+    \item $\hat{R}\approx 1$ indicates that the different chains are mixing well and converge to the same posterior distribution.
     \item Effective sample sizes are sufficient for fixed effects.
   \end{itemize}
 \end{frame}
@@ -418,25 +501,6 @@ Cauchy (opt.) & 0.1493 & 0.9790 & 0.9172 & 0.5872 & 0.7160 \\
   \includegraphics[height=0.78\textheight]{../plots/04_roc_comparison.png}
 \end{frame}
 
-\begin{frame}{Bayesian Logistic Regression Results}
-
-\begin{block}{Model specification}
-\begin{itemize}
-  \item Prior: $\text{Cauchy}(0,2.5)$ (weakly informative)
-  \item 92,960 training observations, 2,400 posterior draws
-\end{itemize}
-\end{block}
-
-\begin{block}{Key feature effects (log-odds scale)}
-\begin{itemize}
-  \item \textbf{balance amount ratio (-22.26):} strongest effect; high imbalance strongly indicates anomalies.
-  \item \textbf{log time (-1.84):} later transactions are less likely to be anomalous.
-  \item \textbf{Sunday (+5.57):} extremely high anomaly concentration on Sundays.
-  \item \textbf{is\_withdrawal (+0.34):} withdrawals slightly more suspicious than deposits.
-\end{itemize}
-\end{block}
-\end{frame}
-
 \begin{frame}{Posterior Predictive Uncertainty}
   \begin{columns}
     \begin{column}{0.37\textwidth}
@@ -454,18 +518,15 @@ Cauchy (opt.) & 0.1493 & 0.9790 & 0.9172 & 0.5872 & 0.7160 \\
 
 \section{Conclusion}
 
-\begin{frame}{Main Takeaways}
+\begin{frame}{Takeaways \& Limitations}
   \begin{block}{Summary}
   \begin{itemize}
     \item Bayesian inference turns assumptions and data into posterior distributions.
-    \item Conjugacy gives an analytical solution for the Beta-Binomial model.
     \item MCMC is needed when the marginal integral is not analytically available.
     \item Bayesian logistic regression gives competitive predictions and uncertainty.
   \end{itemize}
   \end{block}
-\end{frame}
 
-\begin{frame}{Limitations}
   \begin{block}{Main limits}
   \begin{itemize}
     \item The target is an Isolation Forest proxy label, not confirmed fraud.
@@ -473,11 +534,23 @@ Cauchy (opt.) & 0.1493 & 0.9790 & 0.9172 & 0.5872 & 0.7160 \\
     \item A production setting would require temporal validation and true fraud outcomes.
   \end{itemize}
   \end{block}
-\end{frame}
+  \end{frame}
 
-\begin{frame}
-  \centering
-  \Large Thank you
+\begin{frame}{References}
+
+\large
+
+\textit{Liu, F. T., Ting, K. M., and Zhou, Z.-H. (2008). Isolation Forest.}
+\vspace{0.2cm}
+
+\textit{Gelman, A., Jakulin, A., Pittau, M. G., and Su, Y.-S. (2008). A weakly informative default prior distribution for logistic and other regression models.}
+\vspace{0.2cm}
+
+\textit{Watsky, A. \href{https://www.kaggle.com/datasets/apoorvwatsky/bank-transaction-data}{Extracted bank account statements of various bank accounts}.}
+\vspace{0.2cm}
+
+\textbf{Repository}: \href{https://github.com/giolagioia/Bayes-Anomaly-Detection}{github.com/giolagioia/Bayes-Anomaly-Detection}
+
 \end{frame}
 
 \end{document}
