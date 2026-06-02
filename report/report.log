@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.23)  1 JUN 2026 19:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.23)  2 JUN 2026 10:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -705,6 +705,10 @@ Package pdftex.def Info: ../plots/05_bayesian_predictive_uncertainty.png  used o
 
 
 [9 <../plots/04_roc_comparison.png> <../plots/05_bayesian_predictive_uncertainty.png>]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 330.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
 
 [10] (./report.aux)
  ***********
@@ -715,18 +719,18 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: AE13AF13A9347A74EEB88C39A65152C6;1594.
  ) 
 Here is how much of TeX's memory you used:
- 22161 strings out of 473190
- 413898 string characters out of 5715800
+ 22206 strings out of 473190
+ 414614 string characters out of 5715800
  798304 words of memory out of 5000000
- 44984 multiletter control sequences out of 15000+600000
- 650685 words of font info for 107 fonts, out of 8000000 for 9000
+ 45024 multiletter control sequences out of 15000+600000
+ 651003 words of font info for 108 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,11n,91p,910b,440s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (10 pages, 534497 bytes).
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on report.pdf (10 pages, 556828 bytes).
 PDF statistics:
- 199 PDF objects out of 1000 (max. 8388607)
- 148 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
+ 206 PDF objects out of 1000 (max. 8388607)
+ 153 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
  118 words of extra memory for PDF output out of 10000 (max. 10000000)
 
