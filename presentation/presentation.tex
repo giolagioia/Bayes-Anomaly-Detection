@@ -249,7 +249,7 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Code: Proxy Anomaly Label}
+\begin{frame}[fragile]{Code: Anomaly Label}
 \begin{block}{Isolation Forest thresholding}
 \begin{lstlisting}[style=rcode]
 X <- data[, c("amount", "log_time", "balance",
@@ -337,11 +337,8 @@ data$Y <- ifelse(score > threshold, 1, 0)
   \begin{columns}
     \begin{column}{0.38\textwidth}
       \begin{itemize}
-        \item Final posterior mean: 0.050007.
-        \item Final 95\% credible interval:
-        \[
-        [0.048960,\ 0.051063]
-        \]
+        \item Final posterior mean: $\mathbf{E}[\pi \mid Y] = 0.050007$.
+        \item Final 95\% credible interval for $\pi$ variable: $[0.048960,\ 0.051063]$.
         \item The interval becomes very narrow with the full sequence.
       \end{itemize}
     \end{column}
@@ -465,6 +462,31 @@ fit_bayes <- brm(
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Classification Metrics}
+
+\begin{block}{Confusion matrix quantities}
+\[
+\begin{array}{cc}
+TP=\text{true positives} & TN=\text{true negatives} \\
+FP=\text{false positives} & FN=\text{false negatives}
+\end{array}
+\]
+\end{block}
+
+\begin{block}{Metric definitions}
+\[
+\text{Sensitivity}=\text{Recall}=\frac{TP}{TP+FN}
+\]
+\[
+\text{Specificity}=\frac{TN}{TN+FP}
+\]
+\[
+\text{Precision}=\frac{TP}{TP+FP}
+\]
+\end{block}
+
+\end{frame}
+
 \begin{frame}{Predictive Performance}
 
 \begin{table}
@@ -483,7 +505,7 @@ Cauchy (opt.) & 0.1493 & 0.9790 & 0.9172 & 0.5872 & 0.7160 \\
 \end{tabular}
 \end{table}
 
-\vspace{0.2cm}
+\vspace{0.1cm}
 
 \begin{block}{Key insights}
 
