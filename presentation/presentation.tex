@@ -68,7 +68,7 @@
   xrightmargin=0.2cm
 }
 
-\title[Bayesian Fraud Detection]{Bayesian Fraud Detection}
+\title[Bayesian Anomaly Detection]{Bayesian Anomaly Detection}
 \subtitle{From Prior Knowledge to Posterior Uncertainty}
 \author{Giovanni La Gioia}
 \newcommand{\faculty}{USI - Faculty of Informatics}
@@ -337,7 +337,7 @@ data$Y <- ifelse(score > threshold, 1, 0)
   \begin{columns}
     \begin{column}{0.38\textwidth}
       \begin{itemize}
-        \item Final posterior mean: $\mathbf{E}[\pi \mid Y] = 0.050007$.
+        \item Final posterior mean: $\mathbb{E}[\pi \mid Y] = 0.050007$.
         \item Final 95\% credible interval for $\pi$ variable: $[0.048960,\ 0.051063]$.
         \item The interval becomes very narrow with the full sequence.
       \end{itemize}
@@ -382,7 +382,7 @@ data$Y <- ifelse(score > threshold, 1, 0)
   p(\bm{\beta}\mid Y,X)
   =
   \frac{p(\bm{\beta})p(Y\mid X,\bm{\beta})}
-  {\int p(\bm{\beta})p(Y\mid X,\bm{\beta})d\bm{\beta}}
+  {\int p(\bm{\tilde{\beta}})p(Y\mid X,\bm{\tilde{\beta}})d\bm{\tilde{\beta}}}
   \]
 \end{frame}
 
